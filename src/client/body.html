@@ -1,0 +1,22 @@
+<body translate-cloak>
+  <noscript>
+    <div class="alert alert-warning" role="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Warning !</strong> It looks like your browser either doesn't support JavaScript or it has been disabled, please enable JavaScript and refresh the page.
+    </div>
+  </noscript>
+  <!--[if lt IE 9]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div ui-view></div>
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:js({client,.tmp/}) scripts/app.js -->
+  <!-- inject:js -->
+  <!-- app scripts will go here... -->
+  <!-- endinject -->
+  <!-- endbuild -->
+  <script src="environment.js"></script>
+</body>

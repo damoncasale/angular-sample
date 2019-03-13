@@ -2,25 +2,35 @@
 
 const path = require('path'),
     striptags = require('striptags'),
-    db = require(path.resolve('./src/server/config/sequelize'))
+    db = require(path.resolve('./src/server/config/sequelize')),
+    _ = require('lodash')
     ;
 
 exports.list = (req, res) => {
-    db.getModel('Feedback').findAll({
-        order: [['createdAt', 'DESC']],
-        include: [{
-            model: db.getModel('Upload'),
-            as: 'uploads'
-        }]
-    })
-    .then(results => {
-        if (!results) {
-            results = [];
-        }
-        let feedback = _.map(results, row => {
-            return row.get({plain: true});
+    let page = (req.query.page || 1) - 1;
+    db.getModel('Feedback').count()
+    .then(c => {
+        return db.getModel('Feedback').findAll({
+            order: [['createdAt', 'DESC']],
+            offset: (10 * page),
+            limit: 10,
+            include: [{
+                model: db.getModel('Upload'),
+                as: 'uploads'
+            }]
+        })
+        .then(results => {
+            if (!results) {
+                results = [];
+            }
+            let feedback = _.map(results, row => {
+                return row.get({plain: true});
+            });
+            res.json({
+                count: c,
+                data: feedback
+            });
         });
-        res.json(feedback);
     })
     .catch(err => {
         console.log("Database error retrieving feedback!", err);

@@ -1,0 +1,20 @@
+<h3>View Feedback</h3>
+<div class="feedback-container">
+    <div dir-paginate="item in vm.feedbackService.feedbackData | itemsPerPage: 10 track by item.id"
+            current-page="vm.feedbackService.page" total-items="vm.feedbackService.count" ng-click="vm.view(item.id)">
+        <div class="col-sm-6">
+            {{item.email}}
+        </div>
+        <div class="col-sm-6">
+            {{item.createdAt | amDateFormat:'MM/DD/YYYY h:mm a' }}
+        </div>
+    </div>
+</div>
+<div class="feedback-controls">
+    <div class="count">
+        Showing {{((vm.feedbackService.page - 1) * vm.feedbackService.pageSize) + 1}} to
+            {{vm.feedbackService.count > vm.feedbackService.page * vm.feedbackService.pageSize ? vm.feedbackService.page * vm.feedbackService.pageSize : vm.feedbackService.count}} of
+            {{vm.feedbackService.count}} entries
+    </div>
+    <dir-pagination-controls on-page-change="vm.doPage()"></dir-pagination-controls>
+</div>
