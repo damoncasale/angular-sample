@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
         }]
     });
 
-    Feedback.associate = function(/*models*/) {
+    Feedback.associate = function(models) {
         // associations can be defined here
         Feedback.hasMany(models.Upload, {as: 'uploads', foreignKey: {name: 'feedbackId'}});
     };

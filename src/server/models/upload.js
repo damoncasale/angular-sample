@@ -13,9 +13,9 @@ module.exports = function (sequelize, DataTypes) {
         indexes: []
     });
 
-    Upload.associate = function(models) {
+    Upload.associate = function(/*models*/) {
         // associations can be defined here
-        Upload.belongsTo(models.Feedback, {as: 'feedbackId', allowNull: true});
+        //Upload.belongsTo(models.Feedback, {as: 'feedbackId', allowNull: true});
     };
 
     return Upload;

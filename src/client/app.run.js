@@ -1,13 +1,8 @@
-(function() {
-  'use strict';
+'use strict';
 
-  angular
-    .module('lavasoft')
-    .run(run);
+run.$inject = ['$rootScope', '$state', '$timeout', 'authService'];
 
-  run.$inject = ['$rootScope', '$state', '$timeout', 'authService'];
-
-  function run($rootScope, $state, $timeout, authService) {
+export default function run($rootScope, $state, $timeout, authService) {
 
     $rootScope
     .$on('$stateChangeStart',function(e, toState) {
@@ -59,5 +54,4 @@
         }
     })
     ;
-  }
-})();
+}

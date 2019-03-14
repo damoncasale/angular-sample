@@ -1,0 +1,6 @@
+{
+	APP_PORT: 5002, // allows auto override by common env variable if it exists
+	FORCE_DB_SYNC: "false", // must be string to allow environment variable override
+    enableSequelizeLog: "true", // type chosen as string for no particular reason
+    expressSessionSecret: 'r*7My_(/#2{Wr$,"'
+}

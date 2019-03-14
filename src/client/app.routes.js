@@ -1,13 +1,8 @@
-(function() {
-  'use strict';
+'use strict';
 
-  angular
-    .module('lavasoft')
-    .config(routes);
+routes.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-  routes.$inject = ['$stateProvider', '$urlRouterProvider'];
-
-  function routes($stateProvider, $urlRouterProvider) {
+export default function routes($stateProvider, $urlRouterProvider) {
 
     var accountTokenResolve = function($q, $state, $stateParams, authService) {
         return authService.fillAuthDataFromCache().then(function() {
@@ -20,30 +15,29 @@
     };
 
     $stateProvider.state('login', {
-      url: '/login',
-      template: '<fb-login></fb-login>'
+        url: '/login',
+        template: '<fb-login></fb-login>'
     });
 
     $stateProvider.state('admin', {
-      url: '/admin',
-      template: '<fb-admin></fb-admin>',
-      data: {
-        requireAuth: true
-      },
-      resolve: {
-          __token: accountTokenResolve
-      }
+        url: '/admin',
+        template: '<fb-admin></fb-admin>',
+        data: {
+            requireAuth: true
+        },
+        resolve: {
+            __token: accountTokenResolve
+        }
     });
 
     $stateProvider.state('add', {
-      url: '/add',
-      views: {
-        content: {
-          template: '<fb-feedback></fb-feedback>'
+        url: '/add',
+        views: {
+            content: {
+                template: '<fb-feedback></fb-feedback>'
+            }
         }
-      }
     });
 
     $urlRouterProvider.otherwise('/login');
-  }
-})();
+}

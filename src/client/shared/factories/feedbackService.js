@@ -26,9 +26,10 @@ angular.module('lavasoft')
                 page = page || feedbackServiceFactory.page;
                 if ((page !== feedbackServiceFactory.page) || (0 === feedbackServiceFactory.feedbackData.length)) {
                     feedbackServiceFactory.isLoading = true;
-                    return baseService.save(feedbackServiceFactory.queryTerm), {
+                    return baseService.save(feedbackServiceFactory.queryTerm, {
                         page: page
-                    }, null, true).then(function(data) {
+                    }, null, true)
+                    .then(function(data) {
                         feedbackServiceFactory.page = page;
                         feedbackServiceFactory.count = data.count;
                         feedbackServiceFactory.feedbackData = data.data;

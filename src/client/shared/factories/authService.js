@@ -1,5 +1,7 @@
 'use strict';
 
+import angular from 'angular';
+
 angular.module('lavasoft')
     .factory('authService', function($q, localStorageService, baseService) {
         var authServiceFactory = {

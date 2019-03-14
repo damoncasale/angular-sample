@@ -1,6 +1,7 @@
 'use strict';
 
-const config = require('../../config/config');
+const path = require('path'),
+    config = require(path.resolve('src/server/config/config'));
 
 module.exports = (app) => {
 

@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-    .module('visualize')
-    .directive('vsLogin', function() {
+    .module('lavasoft')
+    .directive('fbLogin', function() {
       return {
         restrict: 'E',
         templateUrl: 'app/components/login/login.html',
@@ -14,7 +14,7 @@
     });
 
   angular
-    .module('visualize')
+    .module('lavasoft')
     .controller('LoginCtrl', function($state, $location, authService) {
         var vm = this,
             qs = $location.search();
@@ -30,7 +30,7 @@
             if (vm.loginForm.$valid) {
                 vm.authService.login().then(function() {
                     vm.message = "";
-                    $state.go("main.charts");
+                    $state.go("admin");
                 }, function(error) {
                     vm.message = error.data.message;
                 });

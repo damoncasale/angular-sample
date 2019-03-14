@@ -1,5 +1,6 @@
-(function() {
-  'use strict';
+'use strict';
+
+import angular from 'angular';
 
   angular
     .module('lavasoft')
@@ -14,7 +15,7 @@
     });
 
   angular
-    .module('feedback')
+    .module('lavasoft')
     .controller('FeedbackCtrl', function($scope, $element, $state,
         $stateParams, $q, FileUploader, feedbackService) {
         var vm = this;
@@ -61,7 +62,7 @@
 
         vm.removeUpload = function(item) {
             var upload = _.find(vm.uploads, function(up) {
-                return (0 === up.originalFilename.localeCompare(item.file.name);
+                return (0 === up.originalFilename.localeCompare(item.file.name));
             });
             if (upload) {
                 vm.feedbackService.deleteUpload(upload.id);
@@ -71,4 +72,3 @@
             }
         };
     });
-})();

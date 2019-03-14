@@ -1,8 +1,9 @@
-(function() {
-  'use strict';
+'use strict';
+
+import angular from 'angular';
 
   angular
-    .module('feedback')
+    .module('lavasoft')
     .controller('ViewCtrl', function($uibModalInstance) {
         var vm = this;
 
@@ -10,4 +11,3 @@
             $uibModalInstance.close(null);
         };
     });
-})();

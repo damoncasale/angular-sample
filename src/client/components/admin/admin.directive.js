@@ -1,5 +1,6 @@
-(function() {
-  'use strict';
+'use strict';
+
+import angular from 'angular';
 
   angular
     .module('lavasoft')
@@ -14,7 +15,7 @@
     });
 
   angular
-    .module('feedback')
+    .module('lavasoft')
     .controller('AdminCtrl', function($scope, $element, $state,
         $stateParams, $q, $uibModal, feedbackService) {
         var vm = this;
@@ -55,4 +56,3 @@
         // Initialize when the controller is first loaded
         vm.doPage();
     });
-})();

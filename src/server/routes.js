@@ -9,23 +9,24 @@ module.exports = (app) => {
 
     const config = require(path.resolve('./src/server/config/config')),
         auth = require(path.resolve('./src/server/controllers/auth'))(app),
-        feedback = require(path.resolve('./src/server/controllers/feedback'))
+        feedback = require(path.resolve('./src/server/controllers/feedback')),
+        upload = require(path.resolve('./src/server/controllers/upload'))
         ;
 
     router.get('/', (req, res) => {
         // The index page should be cached to avoid excessive server load
         res.setHeader('Cache-Control', 'public, max-age=86400');
         return res.render('index', {
-            ngapp: ' ng-app="'+config.package.name+'"',
-            title: config.app.name,
+            ngapp: ' ng-app="lavasoft"',
+            title: "Angular Sample",
             urlbase: req.protocol + "://" + req.get('host') + "/",
-            head: fs.readFileSync(__dirname + config.clientpath + 'head.html'),
-            body: fs.readFileSync(__dirname + config.clientpath + 'body.html')
+            head: fs.readFileSync(path.resolve(path.join('src/client', 'head.html'))),
+            body: fs.readFileSync(path.resolve(path.join('src/client', 'body.html')))
         });
     });
 
-    router.post('/auth', auth.login);
-    router.get('/refreshtoken', auth.refreshtoken);
+    router.post('/auth', auth.signup);
+    //router.get('/refreshtoken', auth.refreshtoken);
     router.post('/add', feedback.add);
 
     router.get('/admin', app.jwt.JwtAuthentication, feedback.list);

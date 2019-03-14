@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('visualize')
+import angular from 'angular';
+
+angular.module('lavasoft')
     .factory('baseService', function($http, $q, ENV) {
         ENV.urlbase = urlbase;
 

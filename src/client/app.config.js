@@ -1,16 +1,10 @@
-(function() {
-  'use strict';
+'use strict';
 
-  angular
-    .module('lavasoft')
-    .config(config);
+config.$inject = ['$httpProvider', '$compileProvider'];
 
-  config.$inject = ['$httpProvider', '$compileProvider'];
-
-  function config($httpProvider, $compileProvider) {
+export default function config($httpProvider, $compileProvider) {
 
     // Angular perfs best practices
     $httpProvider.useApplyAsync(true);
     $compileProvider.debugInfoEnabled(false);
-  }
-})();
+}
