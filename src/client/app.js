@@ -15,6 +15,17 @@ import config from './app.config';
 import routes from './app.routes';
 import run from './app.run';
 
+import {baseService, feedbackService, authService} from './shared/factories';
+import {
+    fbAdminDirective,
+    fbAdminCtrl,
+    fbViewCtrl,
+    fbFeedbackDirective,
+    fbFeedbackCtrl,
+    fbLoginDirective,
+    fbLoginCtrl
+} from './components';
+
 import './scss/base.scss';
 import './scss/feedback.scss';
 
@@ -32,10 +43,30 @@ let lavasoft = angular
     'angularMoment'
 ]);
 
-import './shared/factories';
-import './components';
+console.log("ENV", API_URL);
 
 lavasoft
+.constant('ENV', { 'API_URL': API_URL })
 .config(config)
 .config(routes)
-.run(run);
+;
+
+lavasoft
+.factory('baseService', baseService)
+.factory('feedbackService', feedbackService)
+.factory('authService', authService)
+;
+
+lavasoft
+.directive('fbAdmin', fbAdminDirective)
+.controller('AdminCtrl', fbAdminCtrl)
+.controller('ViewCtrl', fbViewCtrl)
+.directive('fbFeedback', fbFeedbackDirective)
+.controller('FeedbackCtrl', fbFeedbackCtrl)
+.directive('fbLogin', fbLoginDirective)
+.controller('LoginCtrl', fbLoginCtrl)
+;
+
+lavasoft
+.run(run)
+;

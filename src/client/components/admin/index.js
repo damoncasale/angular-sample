@@ -1,2 +1,2 @@
-export {default as adminDirective} from './admin.directive';
-export {default as viewController} from './view.controller';
+export {fbAdminDirective, fbAdminCtrl} from './admin.directive';
+export {default as fbViewCtrl} from './view.controller';

@@ -1,13 +1,9 @@
 'use strict';
 
-import angular from 'angular';
+export default function fbViewCtrl($uibModalInstance) {
+    var vm = this;
 
-  angular
-    .module('lavasoft')
-    .controller('ViewCtrl', function($uibModalInstance) {
-        var vm = this;
-
-        vm.close = function() {
-            $uibModalInstance.close(null);
-        };
-    });
+    vm.close = function() {
+        $uibModalInstance.close(null);
+    };
+};

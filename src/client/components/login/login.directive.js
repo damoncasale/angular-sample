@@ -1,40 +1,36 @@
-﻿(function() {
-  'use strict';
+﻿'use strict';
 
-  angular
-    .module('lavasoft')
-    .directive('fbLogin', function() {
-      return {
-        restrict: 'E',
-        templateUrl: 'app/components/login/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'vm',
-        bindToController: true
-      };
-    });
+const loginHtml = require('./login.html');
 
-  angular
-    .module('lavasoft')
-    .controller('LoginCtrl', function($state, $location, authService) {
-        var vm = this,
-            qs = $location.search();
-        vm.authService = authService;
-        vm.loginForm = {};
-        vm.message = "";
+export function fbLoginDirective() {
+  return {
+    restrict: 'E',
+    templateUrl: loginHtml,
+    controller: 'LoginCtrl',
+    controllerAs: 'vm',
+    bindToController: true
+  };
+};
 
-        if ("undefined" !== typeof qs.email) {
-            vm.authService.email = qs.email;
+export function fbLoginCtrl($state, $location, authService) {
+    var vm = this,
+        qs = $location.search();
+    vm.authService = authService;
+    vm.loginForm = {};
+    vm.message = "";
+
+    if ("undefined" !== typeof qs.email) {
+        vm.authService.email = qs.email;
+    }
+
+    vm.login = function() {
+        if (vm.loginForm.$valid) {
+            vm.authService.login().then(function() {
+                vm.message = "";
+                $state.go("admin");
+            }, function(error) {
+                vm.message = error.data.message;
+            });
         }
-
-        vm.login = function() {
-            if (vm.loginForm.$valid) {
-                vm.authService.login().then(function() {
-                    vm.message = "";
-                    $state.go("admin");
-                }, function(error) {
-                    vm.message = error.data.message;
-                });
-            }
-        };
-    });
-})();
+    };
+};

@@ -1,1 +1,1 @@
-export {default as loginDirective} from './login.directive';
+export {fbLoginDirective, fbLoginCtrl} from './login.directive';

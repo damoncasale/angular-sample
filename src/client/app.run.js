@@ -4,6 +4,8 @@ run.$inject = ['$rootScope', '$state', '$timeout', 'authService'];
 
 export default function run($rootScope, $state, $timeout, authService) {
 
+console.log($rootScope);
+
     $rootScope
     .$on('$stateChangeStart',function(e, toState) {
         $rootScope.pageTransition = true;
@@ -12,6 +14,7 @@ export default function run($rootScope, $state, $timeout, authService) {
     });
     $rootScope
     .$on('$stateChangeError', function(e, toState) {
+        alert("In stateChangeError", e, toState);
         if (toState.name !== 'login') {
             $timeout(function() {
                 // eslint-disable-next-line no-console

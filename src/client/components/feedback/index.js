@@ -1,1 +1,1 @@
-export {default as feedbackDirective} from './feedback.directive';
+export {fbFeedbackDirective, fbFeedbackCtrl} from './feedback.directive';
